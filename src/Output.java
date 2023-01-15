@@ -5,11 +5,20 @@ public class Output {
     public void mensajeIntroducirMaxColumna(){
         System.out.println("selecciona numero de columnas para el tablero");
     }
-    public void mensajeDimInvalida(int minRow,int minCol){
-        System.out.printf("minima fila : %d | minima columna : %d \n",minRow,minCol);
+    public void mensajeDimInvalida(int minRowV,int minColV){
+        System.out.printf("minima fila : %d | minima columna : %d \n",minRowV,minColV);
     }
-    public void mensajePosicionInvalida(int minRowV, int minColV){
-        final int minpos = 1;
-        System.out.printf("rango invalido, posicion minima = row : %d  col %d y posicion maxima = row : %d  col %d",minpos,minpos,minRowV,minColV);
+    public void mensajeCheckValidRange(int maxCol){
+        int minCol=1;
+            System.out.printf("columna invalida, columna minima : %d | columna maxima : %d\n", minCol,maxCol);
+    }
+    public void mensajeCheckFreeRowTab(){
+            System.out.println("columnas llenas seleciona otra fila");
+    }
+    public void mensajeInfoIntrodFicha(int turno,int row,int col,char valorC){
+        System.out.printf("turno : %d | fila introducida : %d columna introducida :%d jugador : %c\n",turno,row+1,col+1,valorC);
+    }
+    public void mensajeIntroducirFicha(){
+        System.out.println("selecciona columna para introducir la ficha");
     }
 }

@@ -5,15 +5,17 @@ public class  Tablero  implements Input{
    private int maxRow;
    private int maxCol;
    private char [][] tab;
-   private boolean [][] posOcupadas;
 
     public Tablero(){
         initTablero();
     }
     private void setDimension(){
-        int r = 0;
-        int c = 0;
+        out.mensajeIntroducirMaxFila();
+        int r = s.nextInt();
+        out.mensajeIntroducirMaxColumna();
+        int c = s.nextInt();
         while(!checkValidDimensionToTablero(r,c)){
+            out.mensajeDimInvalida(minRowV, minColV);
             out.mensajeIntroducirMaxFila();
             r = s.nextInt();
             out.mensajeIntroducirMaxColumna();
@@ -28,10 +30,7 @@ public class  Tablero  implements Input{
         inicializarTab();
     }
     private boolean checkValidDimensionToTablero(int row, int col){
-        boolean validDim = row >= minRowV && col >= minColV;
-        if (!validDim)
-            out.mensajeDimInvalida(minRowV, minColV);
-       return validDim ;
+       return row >= minRowV && col >= minColV;
     }
     private void inicializarTab(){
         final char vacio='-';
@@ -42,7 +41,52 @@ public class  Tablero  implements Input{
             }
         }
     }
+    public void insertarFicha(int turno){
+        int firstRowLibre;
+        out.mensajeIntroducirFicha();
+        int col = s.nextInt()-1;
+        char valorC = (turno % 2 == 0)?'o':'x';
+        while(!checkValidPosition(col)){
+            out.mensajeIntroducirFicha();
+            col = s.nextInt()-1;
+        }
+        firstRowLibre = retFreeRowTab(col);
+        tab[firstRowLibre][col] = valorC;
+        out.mensajeInfoIntrodFicha(turno,firstRowLibre,col,valorC);
+    }
 
+    private boolean checkValidPosition(int col){
+        if (!checkValidRange(col)) {
+            out.mensajeCheckValidRange(maxCol);
+            return false;
+        }
+        if (!checkFreeRowTab(col)){
+            out.mensajeCheckFreeRowTab();
+            return false;
+        }
+        return true;
+    }
+    public boolean checkValidRange(int col){
+        final int minPos = 0;
+        return  col < maxCol && col >= minPos;
+    }
+    public boolean checkFreeRowTab(int col){
+        final int fRow=0;
+        for (int row = tab.length-1;row >= fRow;row--){
+            if (tab[row][col]=='-')
+                return true;
+        }
+        return false;
+    }
+    public int retFreeRowTab(int col){
+        final int fRow=0;
+        int row;
+        for (row = tab.length-1;row >= fRow;row--){
+            if (tab[row][col]=='-')
+                break;
+        }
+        return row;
+    }
 
 
 }
