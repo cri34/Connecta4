@@ -52,6 +52,7 @@ public class  Tablero  implements Input{
         }
         firstRowLibre = retFreeRowTab(col);
         tab[firstRowLibre][col] = valorC;
+        printTablero();
         out.mensajeInfoIntrodFicha(turno,firstRowLibre,col,valorC);
     }
 
@@ -86,6 +87,14 @@ public class  Tablero  implements Input{
                 break;
         }
         return row;
+    }
+    public void printTablero(){
+        for (int row = 0;row < maxRow;row++){
+            for (int col = 0; col < maxCol; col++){
+                System.out.print("|"+tab[row][col]+"|");
+            }
+            System.out.println();
+        }
     }
 
 
