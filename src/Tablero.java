@@ -96,6 +96,12 @@ public class  Tablero  implements Input{
             System.out.println();
         }
     }
+    public int getMaxRow(){
+        return maxRow;
+    }
+    public int getMaxCol(){
+        return maxCol;
+    }
 
 
 }
