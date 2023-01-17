@@ -1,5 +1,5 @@
 public class Partida {
-    Tablero t = new Tablero();
+    private  Tablero t = new Tablero();
     private  final int maxTurno= t.getMaxCol() * t.getMaxRow();
     private int turno = 0;
 
@@ -7,11 +7,11 @@ public class Partida {
         initPartida();
     }
     private void initPartida(){
-        while(turno != maxTurno){
+        while(turno!= maxTurno){
             turno++;
+            t.setTurno(turno);
             t.insertarFicha();
         }
-
     }
 
 }

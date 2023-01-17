@@ -110,24 +110,28 @@ public class  Tablero  implements Input{
         this.turno = turno;
     }
     public boolean check4Raya(){
-        int [] direcRow={-1,+0,+1,+0,-1,-1,+1,+1};
-        int [] direcCol={+0,-1,+0,+1,-1,+1,-1,+1};
-        final int maxRec=4;
+        int [] dirRow={+0,+1,-1,+1};
+        int [] dirCol={+1,+1,+0,-1};
+        final int maxRec=7, difPosIni=-3, maxValCons=4;
+        int valCons = 0, row, col, difRow, difCol;
         char valorC = (turno % 2 == 0)?'o':'x';
-        int interRow;
-        int interCol;
-        for (int indDirec = 0; indDirec < direcCol.length; indDirec++){
-            for (int recPos= 0 ;recPos < maxRec; recPos++){
-                interRow= direcRow[indDirec] * recPos;
-                interCol= direcCol[indDirec] * recPos;
-                if (!checkValidRange(rowInsert + interRow,colInsert + interCol))
-                    break;
-                if (tab[rowInsert + interRow][colInsert + interCol] != valorC)
-                    break;
+        for (int indDir = 0; indDir < dirCol.length; indDir++){
+            row = dirRow[indDir] * difPosIni + rowInsert;
+            col = dirCol[indDir] * difPosIni + colInsert;
+            for (int intPosAct = 0 ;intPosAct <= maxRec; intPosAct++){
+                difRow = dirRow[indDir] * intPosAct;
+                difCol = dirCol[indDir] * intPosAct;
+                if (!checkValidRange(row + difRow,col + difCol))
+                    continue;
+                if (tab[row + difRow][col + difCol] != valorC){
+                    valCons = 0;
+                    continue;
+                }
+                    valCons++;
+                if (valCons == maxValCons)
+                    return true;
             }
-            return true;
         }
         return false;
     }
-
 }
