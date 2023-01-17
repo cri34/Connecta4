@@ -6,6 +6,7 @@ public class  Tablero  implements Input{
    private int maxCol;
    private int rowInsert = 0;
    private int colInsert = 0;
+   private int turno=0;
    private char [][] tab;
 
     public Tablero(){
@@ -104,5 +105,8 @@ public class  Tablero  implements Input{
     }
     public int getMaxCol(){
         return maxCol;
+    }
+    public void setTurno (int turno){
+        this.turno = turno;
     }
 }
