@@ -47,7 +47,7 @@ public class  Tablero  implements Input{
         out.mensajeIntroducirFicha();
         colInsert = s.nextInt()-1;
         char valorC = (turno % 2 == 0)?'o':'x';
-        while(!checkValidPosition(colInsert)){
+        while(!checkValidPosition(rowInsert,colInsert)){
             out.mensajeIntroducirFicha();
             colInsert = s.nextInt()-1;
         }
@@ -57,8 +57,8 @@ public class  Tablero  implements Input{
         out.mensajeInfoIntrodFicha(turno,rowInsert,colInsert,valorC);
     }
 
-    private boolean checkValidPosition(int col){
-        if (!checkValidRange(col)) {
+    private boolean checkValidPosition(int row,int col){
+        if (!checkValidRange(row,col)) {
             out.mensajeCheckValidRange(maxCol);
             return false;
         }
@@ -68,9 +68,11 @@ public class  Tablero  implements Input{
         }
         return true;
     }
-    public boolean checkValidRange(int col){
+    public boolean checkValidRange(int row,int col){
         final int minPos = 0;
-        return col < maxCol && col >= minPos;
+        boolean colRange = col < maxCol && col >= minPos;
+        boolean rowRange = row < maxRow && row >= minPos;
+        return colRange && rowRange;
     }
     public boolean checkFreeRowTab(int col){
         final int fRow=0;
