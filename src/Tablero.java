@@ -4,6 +4,8 @@ public class  Tablero  implements Input{
    private final int minColV = 8;
    private int maxRow;
    private int maxCol;
+   private int rowInsert = 0;
+   private int colInsert = 0;
    private char [][] tab;
 
     public Tablero(){
@@ -42,18 +44,17 @@ public class  Tablero  implements Input{
         }
     }
     public void insertarFicha(int turno){
-        int firstRowLibre;
         out.mensajeIntroducirFicha();
-        int col = s.nextInt()-1;
+        colInsert = s.nextInt()-1;
         char valorC = (turno % 2 == 0)?'o':'x';
-        while(!checkValidPosition(col)){
+        while(!checkValidPosition(colInsert)){
             out.mensajeIntroducirFicha();
-            col = s.nextInt()-1;
+            colInsert = s.nextInt()-1;
         }
-        firstRowLibre = retFreeRowTab(col);
-        tab[firstRowLibre][col] = valorC;
+        rowInsert = retFreeRowTab(colInsert);
+        tab[rowInsert][colInsert] = valorC;
         printTablero();
-        out.mensajeInfoIntrodFicha(turno,firstRowLibre,col,valorC);
+        out.mensajeInfoIntrodFicha(turno,rowInsert,colInsert,valorC);
     }
 
     private boolean checkValidPosition(int col){
@@ -69,7 +70,7 @@ public class  Tablero  implements Input{
     }
     public boolean checkValidRange(int col){
         final int minPos = 0;
-        return  col < maxCol && col >= minPos;
+        return col < maxCol && col >= minPos;
     }
     public boolean checkFreeRowTab(int col){
         final int fRow=0;
@@ -102,6 +103,4 @@ public class  Tablero  implements Input{
     public int getMaxCol(){
         return maxCol;
     }
-
-
 }
