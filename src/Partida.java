@@ -9,7 +9,7 @@ public class Partida {
     private void initPartida(){
         while(turno != maxTurno){
             turno++;
-            t.insertarFicha(turno);
+            t.insertarFicha();
         }
 
     }

@@ -44,7 +44,7 @@ public class  Tablero  implements Input{
             }
         }
     }
-    public void insertarFicha(int turno){
+    public void insertarFicha(){
         out.mensajeIntroducirFicha();
         colInsert = s.nextInt()-1;
         char valorC = (turno % 2 == 0)?'o':'x';
@@ -109,4 +109,25 @@ public class  Tablero  implements Input{
     public void setTurno (int turno){
         this.turno = turno;
     }
+    public boolean check4Raya(){
+        int [] direcRow={-1,+0,+1,+0,-1,-1,+1,+1};
+        int [] direcCol={+0,-1,+0,+1,-1,+1,-1,+1};
+        final int maxRec=4;
+        char valorC = (turno % 2 == 0)?'o':'x';
+        int interRow;
+        int interCol;
+        for (int indDirec = 0; indDirec < direcCol.length; indDirec++){
+            for (int recPos= 0 ;recPos < maxRec; recPos++){
+                interRow= direcRow[indDirec] * recPos;
+                interCol= direcCol[indDirec] * recPos;
+                if (!checkValidRange(rowInsert + interRow,colInsert + interCol))
+                    break;
+                if (tab[rowInsert + interRow][colInsert + interCol] != valorC)
+                    break;
+            }
+            return true;
+        }
+        return false;
+    }
+
 }
