@@ -21,4 +21,10 @@ public class Output {
     public void mensajeIntroducirFicha(){
         System.out.println("selecciona columna para introducir la ficha");
     }
+    public void mensaje4EnLinea(char valor){
+        System.out.printf("jugador : %c ha ganado la partida",valor);
+    }
+    public void mensajeMaxTurno(){
+        System.out.println("maximo turno alcanzado");
+    }
 }
