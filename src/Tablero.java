@@ -1,6 +1,8 @@
 public class  Tablero  implements Input{
     private final int minRowV = 8;
    private final int minColV = 8;
+   private final int maxPosRow = 100;
+   private final int maxPosCol = 100;
    private int maxRow;
    private int maxCol;
    private int rowInsert = 0;
@@ -93,11 +95,31 @@ public class  Tablero  implements Input{
     }
     public void printTablero(){
         for (int row = 0;row < maxRow;row++){
+            System.out.print((row+1) + genSpaces(retLeng(maxRow) - retLeng(row+1)));
             for (int col = 0; col < maxCol; col++){
                 System.out.print("|"+tab[row][col]+"|");
             }
             System.out.println();
         }
+        System.out.print(genSpaces(retLeng(maxRow)));
+        printNCol();
+    }
+    private void printNCol(){
+        final int casL=3;
+        for (int i = 0;i < maxCol;i++){
+            System.out.print((i+1) + genSpaces(casL - retLeng(i+1) ));
+        }
+        System.out.println();
+    }
+    private String genSpaces(int n){
+        String es ="";
+        for (int i = 0 ; i < n;i++){
+            es +=" ";
+        }
+        return es;
+    }
+    private int retLeng(int n){
+        return Integer.toString(n).length();
     }
     public int getMaxRow(){
         return maxRow;
