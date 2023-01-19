@@ -12,19 +12,17 @@ public class  Tablero  implements Input{
         initTablero();
     }
     private void setDimension(){
-        Output.mensajeIntroducirMaxFila();
-        int r = Input.inpDim();
-        Output.mensajeIntroducirMaxColumna();
-        int c = Input.inpDim();
-        while(!checkValidDimensionToTablero(r,c)){
+        selectDimInsert();
+        while(!checkValidDimensionToTablero(maxRow,maxCol)){
             Output.mensajeDimInvalida(minRowV, minColV);
-            Output.mensajeIntroducirMaxFila();
-            r = Input.inpDim();
-            Output.mensajeIntroducirMaxColumna();
-            c = Input.inpDim();
+           selectDimInsert();
         }
-        maxRow = r;
-        maxCol = c;
+    }
+    private void selectDimInsert(){
+        Output.mensajeIntroducirMaxFila();
+        maxRow = Input.inpDim();
+        Output.mensajeIntroducirMaxColumna();
+        maxCol = Input.inpDim();
     }
 
     public void initTablero(){
@@ -44,17 +42,19 @@ public class  Tablero  implements Input{
         }
     }
     public void insertarFicha(){
-        Output.mensajeIntroducirFicha();
-        colInsert = Input.inpFicha();
+        selecColInsert();
         char valorC = (turno % 2 == 0)?'o':'x';
         while(!checkValidPosition(rowInsert,colInsert)){
-            Output.mensajeIntroducirFicha();
-            colInsert = Input.inpFicha();
+            selecColInsert();
         }
         rowInsert = retFreeRowTab(colInsert);
         tab[rowInsert][colInsert] = valorC;
         printTablero();
         Output.mensajeInfoIntrodFicha(turno,rowInsert,colInsert,valorC);
+    }
+    private void selecColInsert(){
+        Output.mensajeIntroducirFicha();
+        colInsert = Input.inpFicha();
     }
 
     private boolean checkValidPosition(int row,int col){
