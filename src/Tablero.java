@@ -1,8 +1,8 @@
 public class  Tablero  implements Input{
     private final int minRowV = 8;
    private final int minColV = 8;
-   private final int maxPosRow = 100;
-   private final int maxPosCol = 100;
+   private final int maxRowV = 100;
+   private final int maxColV = 100;
    private int maxRow;
    private int maxCol;
    private int rowInsert = 0;
@@ -16,7 +16,7 @@ public class  Tablero  implements Input{
     private void setDimension(){
         selectDimInsert();
         while(!checkValidDimensionToTablero(maxRow,maxCol)){
-            Output.mensajeDimInvalida(minRowV, minColV);
+            Output.mensajeDimInvalida(minRowV, minColV,maxRowV,maxColV);
            selectDimInsert();
         }
     }
@@ -32,7 +32,9 @@ public class  Tablero  implements Input{
         inicializarTab();
     }
     private boolean checkValidDimensionToTablero(int row, int col){
-       return row >= minRowV && col >= minColV;
+        boolean minRange = row >= minRowV && col >= minColV;
+        boolean maxRange = row <= maxRowV && col <= maxColV;
+       return minRange && maxRange;
     }
     private void inicializarTab(){
         final char vacio='-';

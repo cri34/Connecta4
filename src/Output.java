@@ -5,8 +5,8 @@ public class Output {
     public static void mensajeIntroducirMaxColumna(){
         System.out.println("selecciona numero de columnas para el tablero");
     }
-    public static void mensajeDimInvalida(int minRowV,int minColV){
-        System.out.printf("minima fila : %d | minima columna : %d \n",minRowV,minColV);
+    public static void mensajeDimInvalida(int minRowV,int minColV,int maxRowV,int maxColV){
+        System.out.printf("minima dimension = fila : %d columna : %d | maxima dimension = fila : %d columna : %d \n",minRowV,minColV,maxRowV,maxColV);
     }
     public static void mensajeCheckValidRange(int maxCol){
         int minCol=1;
