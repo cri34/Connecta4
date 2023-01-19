@@ -111,19 +111,20 @@ public class  Tablero  implements Input{
     public boolean check4Raya(){
         int [] dirRow={+0,+1,-1,+1};
         int [] dirCol={+1,+1,+0,-1};
-        final int maxRec=7, difPosIni=-3, maxValCons=4;
+        final int maxRec=7, difPosIni=-3, maxValCons=4, minValCons=0;
         int valCons = 0, row, col, difRow, difCol;
         char valorC = (turno % 2 == 0)?'o':'x';
         for (int indDir = 0; indDir < dirCol.length; indDir++){
             row = dirRow[indDir] * difPosIni + rowInsert;
             col = dirCol[indDir] * difPosIni + colInsert;
+            valCons = minValCons;
             for (int intPosAct = 0 ;intPosAct <= maxRec; intPosAct++){
                 difRow = dirRow[indDir] * intPosAct;
                 difCol = dirCol[indDir] * intPosAct;
                 if (!checkValidRange(row + difRow,col + difCol))
                     continue;
                 if (tab[row + difRow][col + difCol] != valorC){
-                    valCons = 0;
+                    valCons = minValCons;
                     continue;
                 }
                     valCons++;
