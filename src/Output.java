@@ -1,30 +1,30 @@
 public class Output {
-    public void mensajeIntroducirMaxFila(){
+    public static void mensajeIntroducirMaxFila(){
               System.out.println("selecciona numero de filas para el tablero");
     }
-    public void mensajeIntroducirMaxColumna(){
+    public static void mensajeIntroducirMaxColumna(){
         System.out.println("selecciona numero de columnas para el tablero");
     }
-    public void mensajeDimInvalida(int minRowV,int minColV){
+    public static void mensajeDimInvalida(int minRowV,int minColV){
         System.out.printf("minima fila : %d | minima columna : %d \n",minRowV,minColV);
     }
-    public void mensajeCheckValidRange(int maxCol){
+    public static void mensajeCheckValidRange(int maxCol){
         int minCol=1;
             System.out.printf("columna invalida, columna minima : %d | columna maxima : %d\n", minCol,maxCol);
     }
-    public void mensajeCheckFreeRowTab(){
+    public static void mensajeCheckFreeRowTab(){
             System.out.println("columnas llenas seleciona otra fila");
     }
-    public void mensajeInfoIntrodFicha(int turno,int row,int col,char valorC){
+    public static void mensajeInfoIntrodFicha(int turno,int row,int col,char valorC){
         System.out.printf("turno : %d | fila introducida : %d columna introducida :%d jugador : %c\n",turno,row+1,col+1,valorC);
     }
-    public void mensajeIntroducirFicha(){
+    public static void mensajeIntroducirFicha(){
         System.out.println("selecciona columna para introducir la ficha");
     }
-    public void mensaje4EnLinea(char valor){
+    public static void mensaje4EnLinea(char valor){
         System.out.printf("jugador : %c ha ganado la partida",valor);
     }
-    public void mensajeMaxTurno(){
+    public static void mensajeMaxTurno(){
         System.out.println("maximo turno alcanzado");
     }
 }

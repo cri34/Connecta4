@@ -1,6 +1,5 @@
 public class Partida {
     private  Tablero t = new Tablero();
-    private Output out = new Output();
     private  final int maxTurno= t.getMaxCol() * t.getMaxRow();
     private int turno = 0;
 
@@ -18,11 +17,11 @@ public class Partida {
     private boolean continuaPartida(){
         char valorC = (turno % 2 == 0)?'o':'x';
         if (turno == maxTurno){
-            out.mensajeMaxTurno();
+            Output.mensajeMaxTurno();
             return false;
         }
         if (t.check4Raya()){
-            out.mensaje4EnLinea(valorC);
+            Output.mensaje4EnLinea(valorC);
             return false;
         }
         return true;

@@ -1,5 +1,4 @@
 public class  Tablero  implements Input{
-    Output out= new Output();
     private final int minRowV = 8;
    private final int minColV = 8;
    private int maxRow;
@@ -13,16 +12,16 @@ public class  Tablero  implements Input{
         initTablero();
     }
     private void setDimension(){
-        out.mensajeIntroducirMaxFila();
-        int r = s.nextInt();
-        out.mensajeIntroducirMaxColumna();
-        int c = s.nextInt();
+        Output.mensajeIntroducirMaxFila();
+        int r = Input.inpDim();
+        Output.mensajeIntroducirMaxColumna();
+        int c = Input.inpDim();
         while(!checkValidDimensionToTablero(r,c)){
-            out.mensajeDimInvalida(minRowV, minColV);
-            out.mensajeIntroducirMaxFila();
-            r = s.nextInt();
-            out.mensajeIntroducirMaxColumna();
-            c = s.nextInt();
+            Output.mensajeDimInvalida(minRowV, minColV);
+            Output.mensajeIntroducirMaxFila();
+            r = Input.inpDim();
+            Output.mensajeIntroducirMaxColumna();
+            c = Input.inpDim();
         }
         maxRow = r;
         maxCol = c;
@@ -45,26 +44,26 @@ public class  Tablero  implements Input{
         }
     }
     public void insertarFicha(){
-        out.mensajeIntroducirFicha();
-        colInsert = s.nextInt()-1;
+        Output.mensajeIntroducirFicha();
+        colInsert = Input.inpFicha();
         char valorC = (turno % 2 == 0)?'o':'x';
         while(!checkValidPosition(rowInsert,colInsert)){
-            out.mensajeIntroducirFicha();
-            colInsert = s.nextInt()-1;
+            Output.mensajeIntroducirFicha();
+            colInsert = Input.inpFicha();
         }
         rowInsert = retFreeRowTab(colInsert);
         tab[rowInsert][colInsert] = valorC;
         printTablero();
-        out.mensajeInfoIntrodFicha(turno,rowInsert,colInsert,valorC);
+        Output.mensajeInfoIntrodFicha(turno,rowInsert,colInsert,valorC);
     }
 
     private boolean checkValidPosition(int row,int col){
         if (!checkValidRange(row,col)) {
-            out.mensajeCheckValidRange(maxCol);
+            Output.mensajeCheckValidRange(maxCol);
             return false;
         }
         if (!checkFreeRowTab(col)){
-            out.mensajeCheckFreeRowTab();
+            Output.mensajeCheckFreeRowTab();
             return false;
         }
         return true;
